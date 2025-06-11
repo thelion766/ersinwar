@@ -1,432 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ShadowKernel CS2 External Cheat</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ersinware | CS2 Kernel Mode External Cheat</title>
 
-  <!-- Font Awesome CDN -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    rel="stylesheet"
-  />
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      user-select: none;
-    }
+<style>
+  /* Reset & base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+  }
+  html, body {
+    height: 100%;
+    background: #121217;
+    color: #e0e0e0;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #00c9c9;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 
-    body {
-      background: linear-gradient(135deg, #0f0f13 0%, #1a1a26 100%);
-      color: #eee;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
-    }
+  /* Container */
+  .container {
+    max-width: 850px;
+    margin: 50px auto 80px;
+    padding: 0 15px;
+  }
 
+  /* Header */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #1a1a23cc;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 15px #00c9c999;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+  }
+  header h1 {
+    font-weight: 900;
+    font-size: 1.7rem;
+    color: #00c9c9;
+    letter-spacing: 3px;
+  }
+  nav a {
+    margin-left: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.25s ease;
+  }
+  nav a:hover {
+    color: #00ffff;
+  }
+
+  /* Sections */
+  section {
+    padding: 80px 0 40px;
+    border-bottom: 1px solid #2a2a34;
+  }
+  section:last-child {
+    border: none;
+  }
+  h2 {
+    font-weight: 900;
+    font-size: 2.2rem;
+    color: #00c9c9;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+  }
+  p.subtitle {
+    color: #aaa;
+    font-weight: 400;
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  /* Forms */
+  form {
+    background: #1f1f2a;
+    padding: 30px 35px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px #00c9c9aa;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #ccc;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: none;
+    background: #121217;
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 8px #000;
+    transition: box-shadow 0.25s ease;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 15px #00c9c9;
+    background: #101015;
+  }
+  button {
+    width: 100%;
+    padding: 14px 0;
+    border-radius: 50px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: #00c9c9;
+    color: #121217;
+    cursor: pointer;
+    box-shadow: 0 0 30px #00c9c9bb;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  button:hover {
+    background: #00a6a6;
+    box-shadow: 0 0 40px #00c9c9ff;
+  }
+
+  /* Feature list */
+  .features-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 36px;
+    max-width: 100%;
+  }
+  .feature-item {
+    background: #1a1a23;
+    border-radius: 14px;
+    padding: 30px 25px;
+    box-shadow: 0 0 25px #00c9c999;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .feature-item:hover {
+    box-shadow: 0 0 50px #00c9c9ff;
+  }
+  .feature-icon {
+    font-size: 3.4rem;
+    color: #00c9c9;
+    margin-bottom: 15px;
+  }
+  .feature-title {
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .feature-desc {
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
     header {
-      width: 100%;
-      max-width: 1200px;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(20, 20, 30, 0.8);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #333;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      padding: 15px 20px;
     }
-
-    header h1 {
-      font-weight: 900;
-      font-size: 1.8rem;
-      color: #0ff;
-      letter-spacing: 2px;
-      text-shadow: 0 0 8px #0ff;
-    }
-
     nav a {
-      color: #aaa;
-      margin-left: 30px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      position: relative;
+      margin-left: 20px;
+      font-size: 0.95rem;
     }
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #0ff;
-      transition: width 0.3s ease;
-      border-radius: 1px;
+    .container {
+      margin: 80px 15px 50px;
     }
-    nav a:hover {
-      color: #0ff;
+    h2 {
+      font-size: 1.9rem;
     }
-    nav a:hover::after {
-      width: 100%;
+    .features-list {
+      grid-template-columns: 1fr;
     }
+    form {
+      padding: 25px 25px;
+    }
+  }
 
-    /* Hero Section */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 120px 20px 60px;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-      animation: fadeInUp 1.2s ease forwards;
-      opacity: 0;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #00fff7;
-      text-shadow: 0 0 15px #00fff7;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #aaa;
-      max-width: 600px;
-      margin-bottom: 40px;
-      letter-spacing: 0.03em;
-    }
-
-    .btn-login {
-      background: linear-gradient(45deg, #00fff7, #00a2ab);
-      border: none;
-      padding: 15px 40px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 40px;
-      color: #111;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00fff7aa;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-    }
-    .btn-login:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px #00fff7ff;
-    }
-
-    /* Features Section */
-    .features {
-      max-width: 1100px;
-      margin: 60px auto 100px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      padding: 0 20px;
-      animation: fadeInUp 1.5s ease forwards;
-      opacity: 0;
-    }
-
-    .feature-card {
-      background: rgba(30, 30, 45, 0.8);
-      padding: 30px 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #00fff7aa;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-      user-select: none;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 0 30px #00fff7ff;
-    }
-
-    .feature-icon {
-      font-size: 3.8rem;
-      color: #00fff7;
-      margin-bottom: 15px;
-      text-shadow: 0 0 10px #00fff7;
-    }
-
-    .feature-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      color: #00fff7;
-      text-align: center;
-    }
-
-    .feature-desc {
-      font-size: 1rem;
-      color: #ccc;
-      text-align: center;
-      line-height: 1.4;
-      letter-spacing: 0.02em;
-    }
-
-    /* Login Modal */
-    .modal-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 20;
-      backdrop-filter: blur(5px);
-    }
-
-    .modal-bg.active {
-      display: flex;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    .modal {
-      background: #111;
-      border-radius: 20px;
-      padding: 40px 35px;
-      width: 340px;
-      box-shadow: 0 0 40px #00fff7cc;
-      position: relative;
-      animation: scaleIn 0.4s ease forwards;
-      user-select: text;
-    }
-
-    .modal h3 {
-      color: #00fff7;
-      font-weight: 900;
-      font-size: 1.8rem;
-      margin-bottom: 25px;
-      text-align: center;
-      text-shadow: 0 0 12px #00fff7;
-    }
-
-    .modal label {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-bottom: 5px;
-      display: block;
-      user-select: none;
-    }
-
-    .modal input[type='text'],
-    .modal input[type='password'] {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 12px;
-      border: none;
-      outline: none;
-      background: #222;
-      color: #eee;
-      font-size: 1rem;
-      margin-bottom: 20px;
-      transition: box-shadow 0.3s ease;
-      box-shadow: inset 0 0 5px #000;
-    }
-    .modal input[type='text']:focus,
-    .modal input[type='password']:focus {
-      box-shadow: 0 0 10px #00fff7;
-      background: #121212;
-    }
-
-    .modal button {
-      width: 100%;
-      padding: 14px 0;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      border: none;
-      background: #00fff7;
-      color: #111;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00fff7cc;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-    }
-    .modal button:hover {
-      background: #00ccba;
-      box-shadow: 0 0 25px #00fff7ff;
-    }
-
-    .modal .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 1.3rem;
-      color: #777;
-      cursor: pointer;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
-    .modal .close-btn:hover {
-      color: #00fff7;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-    @keyframes scaleIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.85);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      .hero h2 {
-        font-size: 2.4rem;
-      }
-      .features {
-        grid-template-columns: 1fr;
-      }
-      header {
-        padding: 20px;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>ShadowKernel</h1>
-    <nav>
-      <a href="#features">Features</a>
-      <a href="#" id="openLoginBtn">Login</a>
-    </nav>
-  </header>
+<header>
+  <h1>Ersinware</h1>
+  <nav>
+    <a href="#login">Login</a>
+    <a href="#register">Register</a>
+    <a href="#features">Features</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <h2>CS2 Kernel Mode External Cheat</h2>
-    <p>
-      Invite-only, fully undetected against VAC &amp; other anti-cheats.
-      Experience unmatched stealth &amp; power.
-    </p>
-    <button class="btn-login" id="openLoginBtn2">Request Access</button>
+<main class="container">
+
+  <!-- Login Section -->
+  <section id="login" tabindex="-1" aria-label="Login Section">
+    <h2>Login</h2>
+    <p class="subtitle">Access the invite-only Ersinware kernel-mode CS2 external cheat.</p>
+    <form id="loginForm" autocomplete="off" novalidate>
+      <label for="login-username">Username</label>
+      <input type="text" id="login-username" name="username" required autocomplete="username" placeholder="Enter your username" />
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" name="password" required autocomplete="current-password" placeholder="Enter your password" />
+      <button type="submit" aria-label="Login to Ersinware">Sign In</button>
+    </form>
   </section>
 
-  <section class="features" id="features">
-    <div class="feature-card">
-      <i class="fa-solid fa-shield-halved feature-icon"></i>
-      <h3 class="feature-title">Undetected Kernel Mode</h3>
-      <p class="feature-desc">Bypass all VAC &amp; EAC layers with kernel-mode memory access.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-user-secret feature-icon"></i>
-      <h3 class="feature-title">Invite Only Access</h3>
-      <p class="feature-desc">Exclusive cheat distribution for trusted users only.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-bullseye feature-icon"></i>
-      <h3 class="feature-title">Precision Aimbot</h3>
-      <p class="feature-desc">Bone-based aimbot with customizable FOV & smooth aiming.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-eye feature-icon"></i>
-      <h3 class="feature-title">Advanced ESP</h3>
-      <p class="feature-desc">3D box, bone ESP, and health info displayed cleanly in-game.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-rocket feature-icon"></i>
-      <h3 class="feature-title">Optimized Performance</h3>
-      <p class="feature-desc">Ultra-light overlay running at 360+ FPS with zero lag.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-lock feature-icon"></i>
-      <h3 class="feature-title">Secure Communication</h3>
-      <p class="feature-desc">Encrypted kernel-user communication preventing detection.</p>
+  <!-- Register Section -->
+  <section id="register" tabindex="-1" aria-label="Register Section">
+    <h2>Register</h2>
+    <p class="subtitle">Create your account with a valid invite code to join Ersinware.</p>
+    <form id="registerForm" autocomplete="off" novalidate>
+      <label for="reg-username">Username</label>
+      <input type="text" id="reg-username" name="username" required placeholder="Choose a username" />
+      <label for="reg-password">Password</label>
+      <input type="password" id="reg-password" name="password" required placeholder="Create a password" />
+      <label for="invite-code">Invite Code</label>
+      <input type="text" id="invite-code" name="invitecode" required placeholder="Enter your invite code" />
+      <button type="submit" aria-label="Register for Ersinware">Register</button>
+    </form>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" tabindex="-1" aria-label="Features Section">
+    <h2>Features</h2>
+    <p class="subtitle">Ersinware offers cutting-edge capabilities tailored for elite CS2 players.</p>
+    <div class="features-list">
+      <div class="feature-item">
+        <i class="fa-solid fa-shield-halved feature-icon" aria-hidden="true"></i>
+        <h3 class="feature-title">Undetected Kernel Mode</h3>
+        <p class="feature-desc">Full kernel-mode memory access that bypasses VAC, EAC, and other anti-cheats with seamless stealth.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fa-solid fa-user-secret feature-icon" aria-hidden="true"></i>
+        <h3 class="feature-title">Invite-Only Access</h3>
+        <p class="feature-desc">Strict invite code system ensuring trusted users only, maximizing exclusivity and security.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fa-solid fa-bullseye feature-icon" aria-hidden="true"></i>
+        <h3 class="feature-title">Precision Aimbot</h3>
+        <p class="feature-desc">Bone-aware smooth aiming with customizable field-of-view for flawless headshots and minimal detection risk.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fa-solid fa-eye feature-icon" aria-hidden="true"></i>
+        <h3 class="feature-title">Advanced ESP</h3>
+        <p class="feature-desc">3D boxes, bone skeletons, health & ammo info, rendered cleanly with ultra-low overhead.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fa-solid fa-rocket feature-icon" aria-hidden="true"></i>
+        <h3 class="feature-title">Ultra-Performance</h3>
+        <p class="feature-desc">Lightweight overlay running 360+ FPS ensuring smooth gameplay with zero lag or stutters.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fa-solid fa-lock feature-icon" aria-hidden="true"></i>
+        <h3 class="feature-title">Encrypted Communication</h3>
+        <p class="feature-desc">Secure kernel-user mode channel with end-to-end encryption to avoid detection from packet sniffers.</p>
+      </div>
     </div>
   </section>
 
-  <!-- Login Modal -->
-  <div class="modal-bg" id="modalBg">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <span class="close-btn" id="closeModalBtn" title="Close login">&times;</span>
-      <h3 id="modalTitle">Login to ShadowKernel</h3>
-      <form id="loginForm" autocomplete="off">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="Your username" required />
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Your password" required />
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
-  </div>
+</main>
 
-  <script>
-    const openLoginBtns = document.querySelectorAll('#openLoginBtn, #openLoginBtn2');
-    const modalBg = document.getElementById('modalBg');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const loginForm = document.getElementById('loginForm');
+<script>
+  // Minimal client-side validation and feedback
 
-    openLoginBtns.forEach(btn =>
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        modalBg.classList.add('active');
-      })
-    );
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
 
-    closeModalBtn.addEventListener('click', () => {
-      modalBg.classList.remove('active');
-    });
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const user = loginForm.username.value.trim();
+    const pass = loginForm.password.value.trim();
+    if(user.length < 3 || pass.length < 6) {
+      alert('Login: Username must be at least 3 chars and password at least 6 chars.');
+      return;
+    }
+    alert(`Welcome back, ${user}! (This is a demo alert, implement server auth.)`);
+    loginForm.reset();
+  });
 
-    modalBg.addEventListener('click', (e) => {
-      if (e.target === modalBg) {
-        modalBg.classList.remove('active');
-      }
-    });
+  registerForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const user = registerForm.username.value.trim();
+    const pass = registerForm.password.value.trim();
+    const code = registerForm.invitecode.value.trim();
 
-    loginForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const username = loginForm.username.value.trim();
-      const password = loginForm.password.value.trim();
+    if(user.length < 3) {
+      alert('Username must be at least 3 characters.');
+      return;
+    }
+    if(pass.length < 6) {
+      alert('Password must be at least 6 characters.');
+      return;
+    }
+    if(code.length !== 8) { // example invite code length
+      alert('Invite code must be exactly 8 characters.');
+      return;
+    }
+    // Here, add your invite code validation logic as needed
+    alert(`Thank you for registering, ${user}! (Demo only, no real registration)`);
+    registerForm.reset();
+  });
+</script>
 
-      if (username && password) {
-        alert('Login feature is invite-only and under development. Please wait for approval.');
-        modalBg.classList.remove('active');
-        loginForm.reset();
-      }
-    });
-  </script>
 </body>
 </html>
