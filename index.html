@@ -3,326 +3,429 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ersinware | CS2 Kernel Mode External Cheat</title>
+<title>Ersinware - Kernel Mode CS2 Cheat</title>
 
 <!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+/>
 
 <style>
-  /* Reset & base */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  
   * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    user-select: none;
   }
-  html, body {
-    height: 100%;
-    background: #121217;
-    color: #e0e0e0;
-    scroll-behavior: smooth;
+  
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1b2735 0%, #090a0f 100%);
+    color: #f0f0f0;
+    overflow-x: hidden;
   }
-  a {
-    color: #00c9c9;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-
+  
   /* Container */
   .container {
-    max-width: 850px;
-    margin: 50px auto 80px;
-    padding: 0 15px;
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+    background: rgba(20, 20, 30, 0.85);
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow:
+      0 0 15px 2px rgba(82, 122, 235, 0.5),
+      inset 0 0 60px 15px rgba(82, 122, 235, 0.2);
   }
-
-  /* Header */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: #1a1a23cc;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 0 15px #00c9c999;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 50;
+  
+  h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 0.2rem;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #52a3ff;
+    text-shadow: 0 0 8px #52a3ff;
   }
-  header h1 {
-    font-weight: 900;
-    font-size: 1.7rem;
-    color: #00c9c9;
-    letter-spacing: 3px;
-  }
-  nav a {
-    margin-left: 30px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: color 0.25s ease;
-  }
-  nav a:hover {
-    color: #00ffff;
-  }
-
-  /* Sections */
-  section {
-    padding: 80px 0 40px;
-    border-bottom: 1px solid #2a2a34;
-  }
-  section:last-child {
-    border: none;
-  }
+  
   h2 {
-    font-weight: 900;
-    font-size: 2.2rem;
-    color: #00c9c9;
-    margin-bottom: 20px;
-    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #8ab4f8;
   }
-  p.subtitle {
-    color: #aaa;
-    font-weight: 400;
-    margin-bottom: 40px;
-    line-height: 1.4;
+  
+  /* Navigation */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
   }
-
+  
+  nav button {
+    background: transparent;
+    border: none;
+    color: #8ab4f8;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+    font-weight: 600;
+  }
+  
+  nav button.active,
+  nav button:hover {
+    background: #52a3ff;
+    color: white;
+    box-shadow: 0 0 12px #52a3ff;
+  }
+  
   /* Forms */
   form {
-    background: #1f1f2a;
-    padding: 30px 35px;
-    border-radius: 12px;
-    box-shadow: 0 0 40px #00c9c9aa;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     max-width: 450px;
     margin: 0 auto;
   }
+  
   label {
-    display: block;
-    font-weight: 700;
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-    color: #ccc;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
   }
+  
   input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 10px;
+  input[type="password"],
+  input[type="email"] {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
     border: none;
-    background: #121217;
-    color: #e0e0e0;
-    font-size: 1rem;
-    margin-bottom: 20px;
-    box-shadow: inset 0 0 8px #000;
-    transition: box-shadow 0.25s ease;
-  }
-  input[type="text"]:focus,
-  input[type="password"]:focus {
     outline: none;
-    box-shadow: 0 0 15px #00c9c9;
-    background: #101015;
+    font-size: 1rem;
+    background: #1f2937;
+    color: #cfd8dc;
+    transition: box-shadow 0.3s;
   }
-  button {
-    width: 100%;
-    padding: 14px 0;
-    border-radius: 50px;
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
+    box-shadow: 0 0 12px #52a3ff;
+  }
+  
+  button[type="submit"] {
+    background: #52a3ff;
     border: none;
+    padding: 1rem;
     font-weight: 700;
     font-size: 1.1rem;
-    background: #00c9c9;
-    color: #121217;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 0 30px #00c9c9bb;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    transition: background 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background: #3d7be6;
+  }
+  
+  /* Feature List */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .feature {
+    background: #15202b;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #52a3ff55;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 15px #52a3ffcc;
+  }
+  
+  .feature i {
+    font-size: 2.5rem;
+    color: #52a3ff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Message box */
+  .message {
+    margin: 1rem 0;
+    background: #23354d;
+    border-left: 5px solid #52a3ff;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #b0d1ff;
     user-select: none;
   }
-  button:hover {
-    background: #00a6a6;
-    box-shadow: 0 0 40px #00c9c9ff;
-  }
-
-  /* Feature list */
-  .features-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 36px;
-    max-width: 100%;
-  }
-  .feature-item {
-    background: #1a1a23;
-    border-radius: 14px;
-    padding: 30px 25px;
-    box-shadow: 0 0 25px #00c9c999;
+  
+  /* Footer */
+  footer {
     text-align: center;
-    transition: box-shadow 0.3s ease;
-    cursor: default;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+    color: #5f7aaf;
   }
-  .feature-item:hover {
-    box-shadow: 0 0 50px #00c9c9ff;
+  
+  /* Cool effects */
+  .glow-text {
+    color: #52a3ff;
+    text-shadow:
+      0 0 5px #52a3ff,
+      0 0 10px #52a3ff,
+      0 0 20px #52a3ff,
+      0 0 30px #b6d7ff;
   }
-  .feature-icon {
-    font-size: 3.4rem;
-    color: #00c9c9;
-    margin-bottom: 15px;
+  
+  /* Surprise star animation */
+  .starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
   }
-  .feature-title {
-    font-weight: 800;
-    font-size: 1.3rem;
-    margin-bottom: 8px;
+  
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite ease-in-out alternate;
   }
-  .feature-desc {
-    color: #aaa;
-    font-size: 1rem;
-    line-height: 1.3;
+  
+  @keyframes twinkle {
+    0% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
   }
-
+  
   /* Responsive tweaks */
   @media (max-width: 600px) {
-    header {
-      padding: 15px 20px;
-    }
-    nav a {
-      margin-left: 20px;
-      font-size: 0.95rem;
-    }
     .container {
-      margin: 80px 15px 50px;
+      padding: 1.5rem 1.5rem;
     }
-    h2 {
-      font-size: 1.9rem;
+    
+    nav {
+      flex-direction: column;
+      gap: 1rem;
     }
-    .features-list {
+    
+    nav button {
+      width: 100%;
+      font-size: 1.3rem;
+    }
+    
+    .features {
       grid-template-columns: 1fr;
     }
-    form {
-      padding: 25px 25px;
-    }
   }
-
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Ersinware</h1>
+<div class="starfield" aria-hidden="true"></div>
+
+<div class="container">
+  <h1 class="glow-text">Ersinware</h1>
+  <h2>Kernel Mode CS2 External Cheat - Invite Only</h2>
+  
   <nav>
-    <a href="#login">Login</a>
-    <a href="#register">Register</a>
-    <a href="#features">Features</a>
+    <button id="nav-login" class="active" aria-controls="login-section">Login <i class="fa-solid fa-right-to-bracket"></i></button>
+    <button id="nav-register" aria-controls="register-section">Register <i class="fa-solid fa-user-plus"></i></button>
+    <button id="nav-features" aria-controls="features-section">Features <i class="fa-solid fa-star"></i></button>
   </nav>
-</header>
-
-<main class="container">
-
-  <!-- Login Section -->
-  <section id="login" tabindex="-1" aria-label="Login Section">
-    <h2>Login</h2>
-    <p class="subtitle">Access the invite-only Ersinware kernel-mode CS2 external cheat.</p>
-    <form id="loginForm" autocomplete="off" novalidate>
+  
+  <section id="login-section" tabindex="0">
+    <form id="login-form" aria-label="Login Form">
       <label for="login-username">Username</label>
-      <input type="text" id="login-username" name="username" required autocomplete="username" placeholder="Enter your username" />
+      <input id="login-username" type="text" autocomplete="username" required />
+      
       <label for="login-password">Password</label>
-      <input type="password" id="login-password" name="password" required autocomplete="current-password" placeholder="Enter your password" />
-      <button type="submit" aria-label="Login to Ersinware">Sign In</button>
+      <input id="login-password" type="password" autocomplete="current-password" required />
+      
+      <button type="submit"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      <div class="message" id="login-message" role="alert" aria-live="polite" style="display:none"></div>
     </form>
   </section>
-
-  <!-- Register Section -->
-  <section id="register" tabindex="-1" aria-label="Register Section">
-    <h2>Register</h2>
-    <p class="subtitle">Create your account with a valid invite code to join Ersinware.</p>
-    <form id="registerForm" autocomplete="off" novalidate>
-      <label for="reg-username">Username</label>
-      <input type="text" id="reg-username" name="username" required placeholder="Choose a username" />
-      <label for="reg-password">Password</label>
-      <input type="password" id="reg-password" name="password" required placeholder="Create a password" />
-      <label for="invite-code">Invite Code</label>
-      <input type="text" id="invite-code" name="invitecode" required placeholder="Enter your invite code" />
-      <button type="submit" aria-label="Register for Ersinware">Register</button>
+  
+  <section id="register-section" tabindex="0" hidden>
+    <form id="register-form" aria-label="Register Form">
+      <label for="register-username">Username</label>
+      <input id="register-username" type="text" autocomplete="username" required />
+      
+      <label for="register-email">Email</label>
+      <input id="register-email" type="email" autocomplete="email" required />
+      
+      <label for="register-password">Password</label>
+      <input id="register-password" type="password" autocomplete="new-password" required />
+      
+      <label for="register-invite">Invite Code <small>(Required)</small></label>
+      <input id="register-invite" type="text" required placeholder="Enter your invite code" />
+      
+      <button type="submit"><i class="fa-solid fa-user-plus"></i> Register</button>
+      <div class="message" id="register-message" role="alert" aria-live="polite" style="display:none"></div>
     </form>
   </section>
-
-  <!-- Features Section -->
-  <section id="features" tabindex="-1" aria-label="Features Section">
-    <h2>Features</h2>
-    <p class="subtitle">Ersinware offers cutting-edge capabilities tailored for elite CS2 players.</p>
-    <div class="features-list">
-      <div class="feature-item">
-        <i class="fa-solid fa-shield-halved feature-icon" aria-hidden="true"></i>
-        <h3 class="feature-title">Undetected Kernel Mode</h3>
-        <p class="feature-desc">Full kernel-mode memory access that bypasses VAC, EAC, and other anti-cheats with seamless stealth.</p>
+  
+  <section id="features-section" tabindex="0" hidden>
+    <div class="features">
+      <div class="feature">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Undetected Kernel Mode</h3>
+        <p>Bypasses VAC, EAC, and Vanguard with unmatched stealth technology.</p>
       </div>
-      <div class="feature-item">
-        <i class="fa-solid fa-user-secret feature-icon" aria-hidden="true"></i>
-        <h3 class="feature-title">Invite-Only Access</h3>
-        <p class="feature-desc">Strict invite code system ensuring trusted users only, maximizing exclusivity and security.</p>
+      <div class="feature">
+        <i class="fa-solid fa-lock"></i>
+        <h3>Invite-Only Access</h3>
+        <p>Exclusive access to trusted users only via secure invite codes.</p>
       </div>
-      <div class="feature-item">
-        <i class="fa-solid fa-bullseye feature-icon" aria-hidden="true"></i>
-        <h3 class="feature-title">Precision Aimbot</h3>
-        <p class="feature-desc">Bone-aware smooth aiming with customizable field-of-view for flawless headshots and minimal detection risk.</p>
+      <div class="feature">
+        <i class="fa-solid fa-bolt"></i>
+        <h3>High Performance</h3>
+        <p>Ultra low latency external cheat designed for maximum FPS stability.</p>
       </div>
-      <div class="feature-item">
-        <i class="fa-solid fa-eye feature-icon" aria-hidden="true"></i>
-        <h3 class="feature-title">Advanced ESP</h3>
-        <p class="feature-desc">3D boxes, bone skeletons, health & ammo info, rendered cleanly with ultra-low overhead.</p>
+      <div class="feature">
+        <i class="fa-solid fa-crosshairs"></i>
+        <h3>Advanced Aimbot</h3>
+        <p>Bone-aware aimbot with configurable smoothness and FOV.</p>
       </div>
-      <div class="feature-item">
-        <i class="fa-solid fa-rocket feature-icon" aria-hidden="true"></i>
-        <h3 class="feature-title">Ultra-Performance</h3>
-        <p class="feature-desc">Lightweight overlay running 360+ FPS ensuring smooth gameplay with zero lag or stutters.</p>
+      <div class="feature">
+        <i class="fa-solid fa-eye"></i>
+        <h3>ESP & Wallhack</h3>
+        <p>Precise enemy ESP with 3D boxes, skeletons, and health info.</p>
       </div>
-      <div class="feature-item">
-        <i class="fa-solid fa-lock feature-icon" aria-hidden="true"></i>
-        <h3 class="feature-title">Encrypted Communication</h3>
-        <p class="feature-desc">Secure kernel-user mode channel with end-to-end encryption to avoid detection from packet sniffers.</p>
+      <div class="feature">
+        <i class="fa-solid fa-shapes"></i>
+        <h3>Customizable Menu</h3>
+        <p>Built-in ImGui overlay with fully customizable cheat options.</p>
       </div>
     </div>
   </section>
+  
+</div>
 
-</main>
+<footer>
+  &copy; 2025 Ersinware. All rights reserved. Invite only access.
+</footer>
 
 <script>
-  // Minimal client-side validation and feedback
+  // Navigation buttons
+  const navLogin = document.getElementById('nav-login');
+  const navRegister = document.getElementById('nav-register');
+  const navFeatures = document.getElementById('nav-features');
 
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
+  // Sections
+  const sectionLogin = document.getElementById('login-section');
+  const sectionRegister = document.getElementById('register-section');
+  const sectionFeatures = document.getElementById('features-section');
+
+  const navButtons = [navLogin, navRegister, navFeatures];
+  const sections = [sectionLogin, sectionRegister, sectionFeatures];
+
+  function setActive(index) {
+    navButtons.forEach((btn, i) => {
+      if(i === index) {
+        btn.classList.add('active');
+        sections[i].hidden = false;
+      } else {
+        btn.classList.remove('active');
+        sections[i].hidden = true;
+      }
+    });
+  }
+
+  navLogin.onclick = () => setActive(0);
+  navRegister.onclick = () => setActive(1);
+  navFeatures.onclick = () => setActive(2);
+
+  // Starfield surprise animation
+  const starfield = document.querySelector('.starfield');
+  const starCount = 80;
+
+  for(let i=0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    const size = Math.random() * 2 + 1;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.top = (Math.random() * 100) + 'vh';
+    star.style.left = (Math.random() * 100) + 'vw';
+    star.style.animationDuration = (2 + Math.random() * 3) + 's';
+    starfield.appendChild(star);
+  }
+
+  // Login form (demo only)
+  const loginForm = document.getElementById('login-form');
+  const loginMsg = document.getElementById('login-message');
 
   loginForm.addEventListener('submit', e => {
     e.preventDefault();
-    const user = loginForm.username.value.trim();
-    const pass = loginForm.password.value.trim();
-    if(user.length < 3 || pass.length < 6) {
-      alert('Login: Username must be at least 3 chars and password at least 6 chars.');
-      return;
-    }
-    alert(`Welcome back, ${user}! (This is a demo alert, implement server auth.)`);
-    loginForm.reset();
+    loginMsg.style.display = 'block';
+    loginMsg.textContent = 'Authenticating...';
+
+    setTimeout(() => {
+      // Dummy validation demo
+      const user = loginForm['login-username'].value.trim();
+      const pass = loginForm['login-password'].value.trim();
+
+      if(user === "admin" && pass === "password123") {
+        loginMsg.textContent = "Login successful! Welcome back.";
+        loginMsg.style.color = '#7fffd4';
+      } else {
+        loginMsg.textContent = "Invalid username or password.";
+        loginMsg.style.color = '#ff6b6b';
+      }
+    }, 1000);
   });
+
+  // Register form (demo with invite code check)
+  const registerForm = document.getElementById('register-form');
+  const registerMsg = document.getElementById('register-message');
+  const validInviteCodes = ['ERSIN2025', 'VIPACCESS', 'CHEATMASTER'];
 
   registerForm.addEventListener('submit', e => {
     e.preventDefault();
-    const user = registerForm.username.value.trim();
-    const pass = registerForm.password.value.trim();
-    const code = registerForm.invitecode.value.trim();
+    registerMsg.style.display = 'block';
+    registerMsg.style.color = '#52a3ff';
+    registerMsg.textContent = 'Validating invite code...';
 
-    if(user.length < 3) {
-      alert('Username must be at least 3 characters.');
-      return;
-    }
-    if(pass.length < 6) {
-      alert('Password must be at least 6 characters.');
-      return;
-    }
-    if(code.length !== 8) { // example invite code length
-      alert('Invite code must be exactly 8 characters.');
-      return;
-    }
-    // Here, add your invite code validation logic as needed
-    alert(`Thank you for registering, ${user}! (Demo only, no real registration)`);
-    registerForm.reset();
+    setTimeout(() => {
+      const invite = registerForm['register-invite'].value.trim().toUpperCase();
+
+      if(!validInviteCodes.includes(invite)) {
+        registerMsg.style.color = '#ff6b6b';
+        registerMsg.textContent = 'Invalid invite code! You must have a valid invite to register.';
+        return;
+      }
+
+      // Simple demo "registration"
+      registerMsg.style.color = '#7fffd4';
+      registerMsg.textContent = `Welcome ${registerForm['register-username'].value.trim()}! Registration successful.`;
+    }, 1200);
   });
 </script>
 
