@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ErsinWare | External Kernel Cheat for CS2</title>
+  <title>ErsinWare | Invite-Only Kernel Cheat for CS2</title>
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"
@@ -11,7 +11,15 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-    /* Reset & base */
+    :root {
+      --primary: #00ffff;
+      --background: #0e1017;
+      --card: #161a23;
+      --text: #e0e0e0;
+      --muted: #999;
+      --glass: rgba(22, 26, 35, 0.6);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -20,173 +28,223 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #0f111a;
-      color: #e0e0e0;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: fadeIn 1.2s ease forwards;
+      background: var(--background);
+      color: var(--text);
       padding: 2rem 1rem;
+      animation: fadeIn 1s ease;
     }
 
-    /* Fade-in effect */
     @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     header {
-      max-width: 720px;
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
     header h1 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      letter-spacing: 1.2px;
-      color: #4caf50;
-      margin-bottom: 0.5rem;
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
     }
 
     header p {
-      font-weight: 400;
-      font-size: 1.15rem;
-      color: #b0b0b0;
-    }
-
-    section {
-      max-width: 720px;
-      width: 100%;
-      margin-bottom: 3rem;
+      color: var(--muted);
+      font-size: 1.2rem;
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
     }
 
     .feature {
-      background: #1c1f2a;
-      padding: 1.6rem 1.4rem;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
       border-radius: 12px;
-      box-shadow: 0 0 10px rgb(76 175 80 / 0.15);
+      padding: 1.4rem;
       text-align: center;
-      transition: transform 0.3s ease;
-      cursor: default;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+      transition: transform 0.3s;
     }
 
     .feature:hover {
       transform: translateY(-6px);
-      box-shadow: 0 0 18px #4caf50cc;
+      box-shadow: 0 0 18px var(--primary);
     }
 
     .feature i {
       font-size: 2.5rem;
-      color: #4caf50;
-      margin-bottom: 0.8rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
     }
 
     .feature h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.6rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
     }
 
     .feature p {
       font-size: 0.95rem;
-      color: #b0b0b0;
+      color: var(--muted);
     }
 
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      background: #4caf50;
+    .auth-container {
+      max-width: 420px;
+      margin: auto;
+      background: var(--glass);
+      padding: 2rem;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab {
+      padding: 0.8rem 1.6rem;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    .tab.active {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input {
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      border: none;
+      background: #1c1f2a;
+      color: #eee;
+      font-size: 1rem;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    .submit-btn {
+      background: var(--primary);
       color: #111;
       font-weight: 700;
-      padding: 0.9rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      box-shadow: 0 5px 15px #4caf50bb;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1rem;
+      padding: 0.9rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .download-btn:hover {
-      background: #66bb6a;
-      box-shadow: 0 7px 25px #66bb6aaa;
-    }
-
-    .download-btn i {
-      margin-left: 0.8rem;
-      font-size: 1.4rem;
+    .submit-btn:hover {
+      background: #33ffff;
     }
 
     footer {
-      margin-top: auto;
+      margin-top: 3rem;
       text-align: center;
       color: #555;
-      font-size: 0.9rem;
-      padding-bottom: 1rem;
+      font-size: 0.85rem;
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
       header h1 {
-        font-size: 2rem;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
+        font-size: 2.2rem;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>ErsinWare</h1>
-    <p>External Kernel Cheat for CS2 — Undetected &amp; Powerful</p>
+    <p>Invite-Only External Kernel Cheat for CS2</p>
   </header>
 
-  <section class="features" aria-label="Features">
-    <div class="feature" tabindex="0">
-      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-      <h3>Stealth Kernel Mode</h3>
-      <p>Designed for maximum undetection by game anti-cheat systems.</p>
+  <section class="features">
+    <div class="feature">
+      <i class="fa-solid fa-user-secret"></i>
+      <h3>Undetected Kernel Mode</h3>
+      <p>Bypasses EAC and Vanguard with stealth memory operations.</p>
     </div>
-    <div class="feature" tabindex="0">
-      <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
-      <h3>Accurate Aimbot</h3>
-      <p>Precision aiming with smooth and configurable FOV targeting.</p>
+    <div class="feature">
+      <i class="fa-solid fa-crosshairs"></i>
+      <h3>Silent Aimbot</h3>
+      <p>Customizable aimbot with human-like smoothing and prediction.</p>
     </div>
-    <div class="feature" tabindex="0">
-      <i class="fa-solid fa-eye" aria-hidden="true"></i>
-      <h3>Bone ESP & 3D Boxes</h3>
-      <p>See enemies clearly through walls with advanced ESP visuals.</p>
+    <div class="feature">
+      <i class="fa-solid fa-eye-low-vision"></i>
+      <h3>Bone ESP</h3>
+      <p>Draw accurate bones and 3D boxes with high FPS overlay.</p>
     </div>
-    <div class="feature" tabindex="0">
-      <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-      <h3>High Performance</h3>
-      <p>Optimized for minimal FPS impact and smooth gameplay.</p>
+    <div class="feature">
+      <i class="fa-solid fa-gauge-high"></i>
+      <h3>High FPS</h3>
+      <p>Optimized overlay and memory reading for 360+ FPS gameplay.</p>
     </div>
   </section>
 
-  <section style="text-align:center;">
-    <a href="#" class="download-btn" aria-label="Download ErsinWare Cheat">
-      Download ErsinWare <i class="fa-solid fa-download"></i>
-    </a>
+  <section class="auth-container">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Login</button>
+      <button class="tab" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <form id="login-form">
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button class="submit-btn">Login</button>
+    </form>
+
+    <form id="register-form" style="display:none;">
+      <input type="email" placeholder="Email" />
+      <input type="text" placeholder="Username" />
+      <input type="text" placeholder="Invite Code" />
+      <button class="submit-btn">Register</button>
+    </form>
   </section>
 
   <footer>
-    <p>© 2025 ErsinWare. All rights reserved.</p>
+    <p>© 2025 ErsinWare. Private Access Only.</p>
   </footer>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const tabs = document.querySelectorAll('.tab');
+
+    function switchTab(tab) {
+      if (tab === 'login') {
+        loginForm.style.display = 'flex';
+        registerForm.style.display = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'flex';
+      }
+      tabs.forEach(t => t.classList.remove('active'));
+      document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
