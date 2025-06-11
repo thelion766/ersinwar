@@ -1,12 +1,192 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>First Web Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ErsinWare | External Kernel Cheat for CS2</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f111a;
+      color: #e0e0e0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 1.2s ease forwards;
+      padding: 2rem 1rem;
+    }
+
+    /* Fade-in effect */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header {
+      max-width: 720px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      letter-spacing: 1.2px;
+      color: #4caf50;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: #b0b0b0;
+    }
+
+    section {
+      max-width: 720px;
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 1.8rem;
+    }
+
+    .feature {
+      background: #1c1f2a;
+      padding: 1.6rem 1.4rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgb(76 175 80 / 0.15);
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    .feature:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 18px #4caf50cc;
+    }
+
+    .feature i {
+      font-size: 2.5rem;
+      color: #4caf50;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature p {
+      font-size: 0.95rem;
+      color: #b0b0b0;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #4caf50;
+      color: #111;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px #4caf50bb;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background: #66bb6a;
+      box-shadow: 0 7px 25px #66bb6aaa;
+    }
+
+    .download-btn i {
+      margin-left: 0.8rem;
+      font-size: 1.4rem;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      color: #555;
+      font-size: 0.9rem;
+      padding-bottom: 1rem;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    Hello World!
-</body>
+  <header>
+    <h1>ErsinWare</h1>
+    <p>External Kernel Cheat for CS2 — Undetected &amp; Powerful</p>
+  </header>
 
+  <section class="features" aria-label="Features">
+    <div class="feature" tabindex="0">
+      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+      <h3>Stealth Kernel Mode</h3>
+      <p>Designed for maximum undetection by game anti-cheat systems.</p>
+    </div>
+    <div class="feature" tabindex="0">
+      <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+      <h3>Accurate Aimbot</h3>
+      <p>Precision aiming with smooth and configurable FOV targeting.</p>
+    </div>
+    <div class="feature" tabindex="0">
+      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+      <h3>Bone ESP & 3D Boxes</h3>
+      <p>See enemies clearly through walls with advanced ESP visuals.</p>
+    </div>
+    <div class="feature" tabindex="0">
+      <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+      <h3>High Performance</h3>
+      <p>Optimized for minimal FPS impact and smooth gameplay.</p>
+    </div>
+  </section>
+
+  <section style="text-align:center;">
+    <a href="#" class="download-btn" aria-label="Download ErsinWare Cheat">
+      Download ErsinWare <i class="fa-solid fa-download"></i>
+    </a>
+  </section>
+
+  <footer>
+    <p>© 2025 ErsinWare. All rights reserved.</p>
+  </footer>
+</body>
 </html>
