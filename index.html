@@ -3,173 +3,325 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ErsinWare | Invite-Only Kernel Cheat for CS2</title>
+  <title>ShadowKernel CS2 External Cheat</title>
+
+  <!-- Font Awesome CDN -->
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"
   />
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-    :root {
-      --primary: #00ffff;
-      --background: #0e1017;
-      --card: #161a23;
-      --text: #e0e0e0;
-      --muted: #999;
-      --glass: rgba(22, 26, 35, 0.6);
-    }
-
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--background);
-      color: var(--text);
-      padding: 2rem 1rem;
-      animation: fadeIn 1s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      background: linear-gradient(135deg, #0f0f13 0%, #1a1a26 100%);
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
     }
 
     header {
-      text-align: center;
-      margin-bottom: 2.5rem;
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(20, 20, 30, 0.8);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     header h1 {
-      font-size: 3rem;
-      color: var(--primary);
-      margin-bottom: 0.4rem;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #0ff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #0ff;
     }
 
-    header p {
-      color: var(--muted);
-      font-size: 1.2rem;
+    nav a {
+      color: #aaa;
+      margin-left: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #0ff;
+      transition: width 0.3s ease;
+      border-radius: 1px;
+    }
+    nav a:hover {
+      color: #0ff;
+    }
+    nav a:hover::after {
+      width: 100%;
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .feature {
-      background: var(--glass);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      padding: 1.4rem;
-      text-align: center;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
-      transition: transform 0.3s;
-    }
-
-    .feature:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 18px var(--primary);
-    }
-
-    .feature i {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 0.6rem;
-    }
-
-    .feature h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .feature p {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .auth-container {
-      max-width: 420px;
-      margin: auto;
-      background: var(--glass);
-      padding: 2rem;
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
-    }
-
-    .tabs {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 1.5rem;
-    }
-
-    .tab {
-      padding: 0.8rem 1.6rem;
-      background: none;
-      border: none;
-      font-size: 1.1rem;
-      color: var(--muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: 0.3s;
-    }
-
-    .tab.active {
-      color: var(--primary);
-      border-color: var(--primary);
-    }
-
-    form {
+    /* Hero Section */
+    .hero {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      align-items: center;
+      padding: 120px 20px 60px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
     }
 
-    input {
-      padding: 0.8rem 1rem;
-      border-radius: 8px;
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #00fff7;
+      text-shadow: 0 0 15px #00fff7;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #aaa;
+      max-width: 600px;
+      margin-bottom: 40px;
+      letter-spacing: 0.03em;
+    }
+
+    .btn-login {
+      background: linear-gradient(45deg, #00fff7, #00a2ab);
       border: none;
-      background: #1c1f2a;
+      padding: 15px 40px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 40px;
+      color: #111;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00fff7aa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .btn-login:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #00fff7ff;
+    }
+
+    /* Features Section */
+    .features {
+      max-width: 1100px;
+      margin: 60px auto 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    .feature-card {
+      background: rgba(30, 30, 45, 0.8);
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00fff7aa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 0 30px #00fff7ff;
+    }
+
+    .feature-icon {
+      font-size: 3.8rem;
+      color: #00fff7;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #00fff7;
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #00fff7;
+      text-align: center;
+    }
+
+    .feature-desc {
+      font-size: 1rem;
+      color: #ccc;
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+    }
+
+    /* Login Modal */
+    .modal-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-bg.active {
+      display: flex;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .modal {
+      background: #111;
+      border-radius: 20px;
+      padding: 40px 35px;
+      width: 340px;
+      box-shadow: 0 0 40px #00fff7cc;
+      position: relative;
+      animation: scaleIn 0.4s ease forwards;
+      user-select: text;
+    }
+
+    .modal h3 {
+      color: #00fff7;
+      font-weight: 900;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      text-align: center;
+      text-shadow: 0 0 12px #00fff7;
+    }
+
+    .modal label {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 5px;
+      display: block;
+      user-select: none;
+    }
+
+    .modal input[type='text'],
+    .modal input[type='password'] {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: #222;
       color: #eee;
       font-size: 1rem;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease;
+      box-shadow: inset 0 0 5px #000;
+    }
+    .modal input[type='text']:focus,
+    .modal input[type='password']:focus {
+      box-shadow: 0 0 10px #00fff7;
+      background: #121212;
     }
 
-    input::placeholder {
-      color: #777;
-    }
-
-    .submit-btn {
-      background: var(--primary);
-      color: #111;
+    .modal button {
+      width: 100%;
+      padding: 14px 0;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 0.9rem;
-      border-radius: 8px;
+      font-size: 1.1rem;
+      border-radius: 50px;
       border: none;
+      background: #00fff7;
+      color: #111;
       cursor: pointer;
-      transition: background 0.3s;
+      box-shadow: 0 0 15px #00fff7cc;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .modal button:hover {
+      background: #00ccba;
+      box-shadow: 0 0 25px #00fff7ff;
     }
 
-    .submit-btn:hover {
-      background: #33ffff;
+    .modal .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.3rem;
+      color: #777;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+    .modal .close-btn:hover {
+      color: #00fff7;
     }
 
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: #555;
-      font-size: 0.85rem;
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes scaleIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
-    @media (max-width: 500px) {
-      header h1 {
-        font-size: 2.2rem;
+    /* Responsive */
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 2.4rem;
+      }
+      .features {
+        grid-template-columns: 1fr;
+      }
+      header {
+        padding: 20px;
       }
     }
   </style>
@@ -177,74 +329,104 @@
 <body>
 
   <header>
-    <h1>ErsinWare</h1>
-    <p>Invite-Only External Kernel Cheat for CS2</p>
+    <h1>ShadowKernel</h1>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#" id="openLoginBtn">Login</a>
+    </nav>
   </header>
 
-  <section class="features">
-    <div class="feature">
-      <i class="fa-solid fa-user-secret"></i>
-      <h3>Undetected Kernel Mode</h3>
-      <p>Bypasses EAC and Vanguard with stealth memory operations.</p>
+  <section class="hero">
+    <h2>CS2 Kernel Mode External Cheat</h2>
+    <p>
+      Invite-only, fully undetected against VAC &amp; other anti-cheats.
+      Experience unmatched stealth &amp; power.
+    </p>
+    <button class="btn-login" id="openLoginBtn2">Request Access</button>
+  </section>
+
+  <section class="features" id="features">
+    <div class="feature-card">
+      <i class="fa-solid fa-shield-halved feature-icon"></i>
+      <h3 class="feature-title">Undetected Kernel Mode</h3>
+      <p class="feature-desc">Bypass all VAC &amp; EAC layers with kernel-mode memory access.</p>
     </div>
-    <div class="feature">
-      <i class="fa-solid fa-crosshairs"></i>
-      <h3>Silent Aimbot</h3>
-      <p>Customizable aimbot with human-like smoothing and prediction.</p>
+    <div class="feature-card">
+      <i class="fa-solid fa-user-secret feature-icon"></i>
+      <h3 class="feature-title">Invite Only Access</h3>
+      <p class="feature-desc">Exclusive cheat distribution for trusted users only.</p>
     </div>
-    <div class="feature">
-      <i class="fa-solid fa-eye-low-vision"></i>
-      <h3>Bone ESP</h3>
-      <p>Draw accurate bones and 3D boxes with high FPS overlay.</p>
+    <div class="feature-card">
+      <i class="fa-solid fa-bullseye feature-icon"></i>
+      <h3 class="feature-title">Precision Aimbot</h3>
+      <p class="feature-desc">Bone-based aimbot with customizable FOV & smooth aiming.</p>
     </div>
-    <div class="feature">
-      <i class="fa-solid fa-gauge-high"></i>
-      <h3>High FPS</h3>
-      <p>Optimized overlay and memory reading for 360+ FPS gameplay.</p>
+    <div class="feature-card">
+      <i class="fa-solid fa-eye feature-icon"></i>
+      <h3 class="feature-title">Advanced ESP</h3>
+      <p class="feature-desc">3D box, bone ESP, and health info displayed cleanly in-game.</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa-solid fa-rocket feature-icon"></i>
+      <h3 class="feature-title">Optimized Performance</h3>
+      <p class="feature-desc">Ultra-light overlay running at 360+ FPS with zero lag.</p>
+    </div>
+    <div class="feature-card">
+      <i class="fa-solid fa-lock feature-icon"></i>
+      <h3 class="feature-title">Secure Communication</h3>
+      <p class="feature-desc">Encrypted kernel-user communication preventing detection.</p>
     </div>
   </section>
 
-  <section class="auth-container">
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab('login')">Login</button>
-      <button class="tab" onclick="switchTab('register')">Register</button>
+  <!-- Login Modal -->
+  <div class="modal-bg" id="modalBg">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <span class="close-btn" id="closeModalBtn" title="Close login">&times;</span>
+      <h3 id="modalTitle">Login to ShadowKernel</h3>
+      <form id="loginForm" autocomplete="off">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Your username" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your password" required />
+        <button type="submit">Sign In</button>
+      </form>
     </div>
-
-    <form id="login-form">
-      <input type="text" placeholder="Username" />
-      <input type="password" placeholder="Password" />
-      <button class="submit-btn">Login</button>
-    </form>
-
-    <form id="register-form" style="display:none;">
-      <input type="email" placeholder="Email" />
-      <input type="text" placeholder="Username" />
-      <input type="text" placeholder="Invite Code" />
-      <button class="submit-btn">Register</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>© 2025 ErsinWare. Private Access Only.</p>
-  </footer>
+  </div>
 
   <script>
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const tabs = document.querySelectorAll('.tab');
+    const openLoginBtns = document.querySelectorAll('#openLoginBtn, #openLoginBtn2');
+    const modalBg = document.getElementById('modalBg');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const loginForm = document.getElementById('loginForm');
 
-    function switchTab(tab) {
-      if (tab === 'login') {
-        loginForm.style.display = 'flex';
-        registerForm.style.display = 'none';
-      } else {
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'flex';
+    openLoginBtns.forEach(btn =>
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        modalBg.classList.add('active');
+      })
+    );
+
+    closeModalBtn.addEventListener('click', () => {
+      modalBg.classList.remove('active');
+    });
+
+    modalBg.addEventListener('click', (e) => {
+      if (e.target === modalBg) {
+        modalBg.classList.remove('active');
       }
-      tabs.forEach(t => t.classList.remove('active'));
-      document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
-    }
-  </script>
+    });
 
+    loginForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const username = loginForm.username.value.trim();
+      const password = loginForm.password.value.trim();
+
+      if (username && password) {
+        alert('Login feature is invite-only and under development. Please wait for approval.');
+        modalBg.classList.remove('active');
+        loginForm.reset();
+      }
+    });
+  </script>
 </body>
 </html>
